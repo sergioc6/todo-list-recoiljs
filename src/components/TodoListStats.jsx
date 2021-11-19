@@ -1,0 +1,26 @@
+import React from "react";
+import { useRecoilValue } from "recoil";
+import { todoListStatsState } from "../recoil/selectors";
+
+const TodoListStats = () => {
+
+    const {
+        totalNum,
+        totalCompletedNum,
+        totalUncompletedNum,
+        percentCompleted
+    } = useRecoilValue(todoListStatsState)
+
+    const formattedPercenCompleted = Math.round(percentCompleted)
+
+    return (
+    <ul>
+        <li>Total items: {totalNum}</li>
+        <li>Items completed: {totalCompletedNum}</li>
+        <li>Items not completed: {totalUncompletedNum}</li>
+        <li>Percented completed: {!isNaN(formattedPercenCompleted) ? `${formattedPercenCompleted}%` : '0%'}</li>
+    </ul>
+    );
+}
+
+export default TodoListStats;
